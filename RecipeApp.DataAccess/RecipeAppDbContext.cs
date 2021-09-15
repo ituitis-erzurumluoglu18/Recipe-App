@@ -11,7 +11,7 @@ namespace RecipeApp.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Server=LAPTOP-9IQ5NO3T\SQLEXPRESS; Database=RecipeApp; uid=sa; pwd=fatbir1773;");
+            optionsBuilder.UseSqlServer(@"Server=LAPTOP-9IQ5NO3T; Database=RecipeAppDb; uid=sa; pwd=fatbir1773;");
         }
 
         public DbSet<User> Users { get; set; }

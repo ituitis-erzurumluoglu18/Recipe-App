@@ -7,7 +7,7 @@ namespace RecipeApp.Domain
     public class User
     {
         //[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserID { get; set; }
+        public Guid UserID { get; set; }
 
         public string Name { get; set; }
 

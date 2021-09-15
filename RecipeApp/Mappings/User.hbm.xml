@@ -1,1 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="RecipeApp" 
+                   namespace="RecipeApp.Domain">
+ 
+  <class name="User">
+    <id name="UserID">
+      <generator class="guid" />
+    </id>
+	  <property name="Name">
+		  <column name="Name" length="50" not-null="true" />
+	  </property> />
+    <property name="Username">
+		<column name="Username" length="50" not-null="true" />
+	</property> />
+    <property name="Email">
+		<column name="Email" length="30" not-null="true" />
+	</property> />
+    <property name="Password">
+		<column name="Password" length="256" not-null="true" />
+	</property> />
+    <property name="PhotoUrl">
+		<column name="PhotoUrl" length="256" />
+	</property> />
+  </class>
+  
+</hibernate-mapping>

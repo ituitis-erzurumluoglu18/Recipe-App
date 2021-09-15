@@ -13,8 +13,12 @@
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
         "outputPath": "D:\\XYZ Teknoloji\\RecipeApp\\Recipe-App\\RecipeApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +43,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "NHibernate.Caches.CoreDistributedCache.SqlServer": {
+              "target": "Package",
+              "version": "[5.7.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
