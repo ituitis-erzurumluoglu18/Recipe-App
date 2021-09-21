@@ -22,15 +22,15 @@ namespace RecipeApp.Repositories
                 if (_sessionFactory == null)
                 {
                     var configuration = new Configuration();
-                    //configuration.Configure();
-                    //configuration.AddXmlFile(@"~\hibernate.cfg.xml");
-                    //configuration.AddXmlFile(@"~\Mappings\Book.hbm.xml");
+                    //configuration.AddXmlFile(@"Mappings\User.hbm.xml");
+                    //configuration.AddXmlFile("hibernate.cfg.xml");
+                    configuration.Configure("hibernate.cfg.xml");
                     //var configurationPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~\Models\hibernate.cfg.xml");
-                    //var bookConfigurationFile = ContentRootPath(@"~\Mappings\Book.hbm.xml");
-                    var configurationPath = Path.Combine((string)AppDomain.CurrentDomain.GetData("ContentRootPath"), @"~\hibernate.cfg.xml");
-                    configuration.Configure(configurationPath);
-                    var bookConfigurationFile = Path.Combine((string)AppDomain.CurrentDomain.GetData("ContentRootPath"), @"~\Mappings\User.hbm.xml");
-                    configuration.AddFile(bookConfigurationFile);
+                    //var bookConfigurationFile = (@"~\Mappings\Book.hbm.xml");
+                    //var configurationPath = Path.Combine((string)AppDomain.CurrentDomain.GetData("ContentRootPath"), "hibernate.cfg.xml");
+                    //configuration.Configure(configurationPath);
+                    //var userConfigurationFile = Path.Combine((string)AppDomain.CurrentDomain.GetData("ContentRootPath"), @"~\Mappings\User.hbm.xml");
+                    //configuration.AddFile(userConfigurationFile);
                     //configuration.AddAssembly(typeof(User).Assembly);
                     _sessionFactory = configuration.BuildSessionFactory();
                 }

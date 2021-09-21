@@ -13,18 +13,62 @@ namespace RecipeApp.Controllers
     [ApiController]
     public class RecipesController : ControllerBase
     {
-        private IUserRepository _userService;
+        private IRecipesRepository _recipesService;
 
         public RecipesController()
         {
-            _userService = new UserRepository();
+            _recipesService = new RecipesRepository();
         }
 
         [HttpGet]
-        public List<User> Get()
+        public async Task<IActionResult> Get()
         {
-            var users = _userService.GetAllUser();
-            return users;
+            var recipes = await _recipesService.GetAllRecipes();
+            if (recipes != null)
+            {
+                return Ok(recipes);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var recipe = await _recipesService.GetById(id);
+            if (recipe != null)
+            {
+                return Ok(recipe);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Recipe recipe)
+        {
+            var createdRecipe = await _recipesService.Add(recipe);
+            return CreatedAtAction("Get", new { id = createdRecipe.RecipeID }, createdRecipe);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Recipe recipe)
+        {
+            if(_recipesService.GetById(recipe.RecipeID) != null)
+            {
+                await _recipesService.Update(recipe);
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (_recipesService.GetById(id) != null)
+            {
+                await _recipesService.Remove(id);
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

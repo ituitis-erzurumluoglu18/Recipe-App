@@ -44,6 +44,22 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "MilestoneTG.NHibernate.Extensions.AspNetCore": {
+              "target": "Package",
+              "version": "[1.0.13, )"
+            },
+            "NHibernate": {
+              "target": "Package",
+              "version": "[5.3.9, )"
+            },
             "NHibernate.Caches.CoreDistributedCache.SqlServer": {
               "target": "Package",
               "version": "[5.7.0, )"

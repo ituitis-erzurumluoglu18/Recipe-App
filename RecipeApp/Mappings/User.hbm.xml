@@ -3,25 +3,46 @@
                    assembly="RecipeApp" 
                    namespace="RecipeApp.Domain">
  
-  <class name="User">
+  <class name="User" table="Users">
     <id name="UserID">
       <generator class="guid" />
     </id>
 	  <property name="Name">
 		  <column name="Name" length="50" not-null="true" />
-	  </property> />
+	  </property>
     <property name="Username">
 		<column name="Username" length="50" not-null="true" />
-	</property> />
+	</property>
     <property name="Email">
 		<column name="Email" length="30" not-null="true" />
-	</property> />
+	</property> 
     <property name="Password">
 		<column name="Password" length="256" not-null="true" />
-	</property> />
+	</property> 
     <property name="PhotoUrl">
 		<column name="PhotoUrl" length="256" />
-	</property> />
+	</property> 
   </class>
-  
+	
+	<class name="Recipe" table="Recipes">
+		<id name="RecipeID">
+			<generator class="guid" />
+		</id>
+		<many-to-one name="OwnerID" column="OwnerID" cascade="all" class="User" not-null="true"/>
+		<property name="Name">
+			<column name="Name" length="50" not-null="true" />
+		</property>
+		<property name="Type">
+			<column name="Type" length="50" not-null="true" />
+		</property>
+		<property name="PhotoUrl">
+			<column name="PhotoUrl" length="256" />
+		</property>
+		<property name="Duration" type="Int16">
+			<column name="Duration" />
+		</property>
+		<property name="Process" type="StringClob">
+			<column name="Process" not-null="true" />
+		</property>
+	</class>
 </hibernate-mapping>

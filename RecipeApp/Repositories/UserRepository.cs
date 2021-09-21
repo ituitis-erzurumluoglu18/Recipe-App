@@ -5,31 +5,29 @@ using System.Threading.Tasks;
 using RecipeApp.Domain;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace RecipeApp.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private IUserRepository _userRepository;
-
-        public UserRepository()
-        {
-            _userRepository = new UserRepository();
-        }
-
-        public List<User> GetAllUser()
+        public async Task<List<User>> GetAllUser()
         {
             using (ISession session = NHibernateHelper.OpenSession())
-                return session.Query<User>().ToList();
+            {
+                var a = await session.Query<User>().ToListAsync();
+                return a;
+            }
         }
 
-        public void Add(User user)
+        public async Task<User> Add(User user)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
-                session.Save(user);
-                transaction.Commit();
+                await session.SaveAsync(user);
+                await transaction.CommitAsync();
+                return user;
             }
         }
 
@@ -43,11 +41,11 @@ namespace RecipeApp.Repositories
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                User product = session
+                User user = session
                     .CreateCriteria(typeof(User))
                     .Add(Restrictions.Eq("Name", username))
                     .UniqueResult<User>();
-                return product;
+                return user;
             }
         }
 

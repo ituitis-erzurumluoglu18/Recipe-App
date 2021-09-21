@@ -28,20 +28,21 @@ namespace RecipeApp.Controllers
         }
 
         [HttpGet]
-        public List<User> Get()
+        public async Task<IActionResult> Get()
         {
-            var users = _userService.GetAllUser();
-            return users;
+            var users = await _userService.GetAllUser();
+            if (users != null)
+            {
+                return Ok(users);
+            }
+            return NotFound();
         }
-        //public IActionResult Get()
+        //public List<User> Get()
         //{
         //    var users = _userService.GetAllUser();
-        //    if (users != null)
-        //    {
-        //        return Ok(users);
-        //    }
-        //    return NotFound();
+        //    return users;
         //}
+
 
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)

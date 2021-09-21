@@ -12,10 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="hibernate.cfg.xml" />
+    <None Remove="hibernate.hbm.xml" />
     <None Remove="Mappings\User.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="hibernate.cfg.xml" />
     <EmbeddedResource Include="Mappings\User.hbm.xml" />
   </ItemGroup>
 
@@ -24,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MilestoneTG.NHibernate.Extensions.AspNetCore" Version="1.0.13" />
+    <PackageReference Include="NHibernate" Version="5.3.9" />
     <PackageReference Include="NHibernate.Caches.CoreDistributedCache.SqlServer" Version="5.7.0" />
   </ItemGroup>
 

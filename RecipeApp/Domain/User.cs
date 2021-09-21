@@ -7,16 +7,16 @@ namespace RecipeApp.Domain
     public class User
     {
         //[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid UserID { get; set; }
+        public virtual Guid UserID { get; set; }
 
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
-        public string Username { get; set; }
+        public virtual string Username { get; set; }
 
-        public string Email { get; set; }
+        public virtual string Email { get; set; }
 
-        public string Password { get; set; }
+        public virtual string Password { get; set; }
 
-        public string PhotoUrl { get; set; }
+        public virtual string PhotoUrl { get; set; }
     }
 }

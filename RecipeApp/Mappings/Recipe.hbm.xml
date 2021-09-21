@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RecipeApp"
+                   namespace="RecipeApp.Domain">
+
+	<class name="Recipe" table="Recipes">
+		<id name="RecipeID">
+			<generator class="guid" />
+		</id>
+		<many-to-one name="OwnerID" column="OwnerID" cascade="all" class="User" not-null="true"/>
+		<property name="Name">
+			<column name="Name" length="50" not-null="true" />
+		</property>
+		<property name="Type">
+			<column name="Type" length="50" not-null="true" />
+		</property>
+		<property name="PhotoUrl">
+			<column name="PhotoUrl" length="256" />
+		</property>
+		<property name="Duration" type="Int16">
+			<column name="Duration" />
+		</property>
+		<property name="Process" type="StringClob">
+			<column name="Process" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

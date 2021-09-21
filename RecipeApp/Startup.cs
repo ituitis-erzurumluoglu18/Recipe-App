@@ -11,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NHibernate.Linq;
-
+using MilestoneTG.NHibernate.Extensions.AspNetCore;
 
 namespace RecipeApp
 {
@@ -46,7 +46,10 @@ namespace RecipeApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=api/home}/{action=Get}/{id?}");
             });
         }
     }

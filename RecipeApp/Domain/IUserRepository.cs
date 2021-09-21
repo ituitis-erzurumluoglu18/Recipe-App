@@ -7,8 +7,8 @@ namespace RecipeApp.Domain
 {
     public interface IUserRepository
     {
-        List<User> GetAllUser();
-        void Add(User user);
+        Task<List<User>> GetAllUser();
+        Task<User> Add(User user);
         void Update(User user);
         void Remove(User user);
         User GetById(Guid userId);
