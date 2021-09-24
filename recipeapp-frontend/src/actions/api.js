@@ -6,8 +6,7 @@ export default {
     dCandidate(url=baseUrl){
         return{
             fetchAll : () => axios.get(url),
-            fetchById : id => axios.get(url + id),
-            create :  
+            fetchById : id => axios.get(url + id)
         }
     }
 }
