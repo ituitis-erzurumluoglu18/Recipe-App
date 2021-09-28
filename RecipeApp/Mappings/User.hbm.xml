@@ -3,26 +3,26 @@
                    assembly="RecipeApp" 
                    namespace="RecipeApp.Domain">
  
-  <class name="User" table="Users">
-    <id name="UserID">
-      <generator class="guid" />
-    </id>
-	  <property name="Name">
-		  <column name="Name" length="50" not-null="true" />
-	  </property>
-    <property name="Username">
-		<column name="Username" length="50" not-null="true" />
-	</property>
-    <property name="Email">
-		<column name="Email" length="30" not-null="true" />
-	</property> 
-    <property name="Password">
-		<column name="Password" length="256" not-null="true" />
-	</property> 
-    <property name="PhotoUrl">
-		<column name="PhotoUrl" length="256" />
-	</property> 
-  </class>
+	<class name="User" table="Users">
+		<id name="UserID">
+			<generator class="guid" />
+		</id>
+		<property name="Name">
+			<column name="Name" length="50" not-null="true" />
+		</property>
+		<property name="Username">
+			<column name="Username" length="50" not-null="true" />
+		</property>
+		<property name="Email">
+			<column name="Email" length="30" not-null="true" />
+		</property> 
+		<property name="Password">
+			<column name="Password" length="256" not-null="true" />
+		</property> 
+		<property name="PhotoUrl">
+			<column name="PhotoUrl" length="500" />
+		</property> 
+	</class>
 	
 	<class name="Recipe" table="Recipes">
 		<id name="RecipeID">
@@ -36,13 +36,26 @@
 			<column name="Type" length="50" not-null="true" />
 		</property>
 		<property name="PhotoUrl">
-			<column name="PhotoUrl" length="256" />
+			<column name="PhotoUrl" length="500" />
 		</property>
 		<property name="Duration" type="Int16">
 			<column name="Duration" />
 		</property>
 		<property name="Process" type="StringClob">
 			<column name="Process" not-null="true" />
+		</property>
+	</class>
+	
+	<class name="Ingredient" table="Ingredients">
+		<id name="IngredientID">
+			<generator class="guid" />
+		</id>
+		<many-to-one name="RecipeID" column="RecipeID" cascade="all" class="Recipe" not-null="true"/>
+		<property name="Name">
+			<column name="Name" length="50" not-null="true" />
+		</property>
+		<property name="Portion">
+			<column name="Portion" length="100" not-null="true" />
 		</property>
 	</class>
 </hibernate-mapping>

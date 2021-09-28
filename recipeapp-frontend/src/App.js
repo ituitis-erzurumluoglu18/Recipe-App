@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 /*
@@ -8,21 +8,17 @@ import DCandidates from './components/DCandidates';
 */
 import Navbar from "./components/Navbar";
 // import User from './components/User';
-import Users from './components/Users';
-import AddUser from "./components/AddUser";
+//import Users from './components/Users';
+//import Test from './components/Test';
 
-class App extends Component {
-  render(){
+function App() {
     // const {users} = this.state;
     return (
       <div className="App">
-        <Navbar title = "Navbar"/>
-        <hr/>
-        <AddUser/>
-        <Users/>
+        <Navbar title = "Recipe App"/>
       </div>
     )
-  }
+  
 }
 
 export default App;

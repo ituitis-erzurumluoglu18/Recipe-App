@@ -36,7 +36,7 @@ class User extends Component {
                         const {dispatch} = value;
                         return (
                             <div className="col-md-8 mb-4">
-                                <div className="card">
+                                <div className="card" style={isVisible ? {backgroundColor : "#62848d", color : "white"} : null}>
                                     <div className="card-header d-flex justify-content-between">
                                         <h4 className="d-inline" onClick={this.onClickEvent.bind(this)}>{name}</h4>
                                         <i className="fas fa-trash-alt" style={{cursor : "pointer"}} onClick={this.onDeleteUser.bind(this, dispatch)}></i>
@@ -66,7 +66,7 @@ User.defaultProps = {
 User.propTypes = {
     name : PropTypes.string.isRequired,
     department : PropTypes.string.isRequired,
-    id : PropTypes.number.isRequired
+    id : PropTypes.string.isRequired
 }
 
 export default User;
