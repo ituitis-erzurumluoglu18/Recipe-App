@@ -3,9 +3,13 @@
                    assembly="RecipeApp" 
                    namespace="RecipeApp.Domain">
  
-	<class name="User" table="Users">
-		<id name="UserID">
-			<generator class="guid" />
+	<class name="User" table="Users" lazy="true">
+		<id name="UserID" column="UserId" type="long">
+			<generator class="native"/>
+			<!--
+				<param name="key">KeyNumber</param>
+			</generator>
+			-->
 		</id>
 		<property name="Name">
 			<column name="Name" length="50" not-null="true" />
@@ -21,12 +25,12 @@
 		</property> 
 		<property name="PhotoUrl">
 			<column name="PhotoUrl" length="500" />
-		</property> 
+		</property>
 	</class>
-	
+	<!--
 	<class name="Recipe" table="Recipes">
-		<id name="RecipeID">
-			<generator class="guid" />
+		<id name="RecipeID" column="Id" type="long">
+			<generator class="native" />
 		</id>
 		<many-to-one name="OwnerID" column="OwnerID" cascade="all" class="User" not-null="true"/>
 		<property name="Name">
@@ -45,10 +49,10 @@
 			<column name="Process" not-null="true" />
 		</property>
 	</class>
-	
+
 	<class name="Ingredient" table="Ingredients">
-		<id name="IngredientID">
-			<generator class="guid" />
+		<id name="IngredientID" column="Id" type="long">
+			<generator class="native" />
 		</id>
 		<many-to-one name="RecipeID" column="RecipeID" cascade="all" class="Recipe" not-null="true"/>
 		<property name="Name">
@@ -58,4 +62,5 @@
 			<column name="Portion" length="100" not-null="true" />
 		</property>
 	</class>
+	-->
 </hibernate-mapping>

@@ -25,19 +25,21 @@ export default class Recipes extends Component {
 
     render() {
         const {recipes} = this.state;
+        console.log(recipes);
         return (
             <div>
                 {
                     recipes.map(recipe => {
                         return(
                             <Recipe
-                                key = {recipe.id}
-                                ownerId = {recipe.ownerId}
-                                name = {recipe.name}
-                                type = {recipe.type}
-                                photoUrl = {recipe.photoUrl}
-                                duration = {recipe.duration}
-                                process = {recipe.process}
+                                key = {recipe.RecipeID}
+                                ownerId = {recipe.OwnerID}
+                                name = {recipe.Name}
+                                type = {recipe.Type}
+                                photoUrl = {recipe.PhotoUrl}
+                                duration = {recipe.Duration}
+                                process = {recipe.Process}
+                                id = {recipe.RecipeID}
                             />
                         )
                     })

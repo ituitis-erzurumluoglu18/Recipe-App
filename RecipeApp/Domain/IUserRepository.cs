@@ -11,7 +11,7 @@ namespace RecipeApp.Domain
         Task<User> Add(User user);
         void Update(User user);
         void Remove(User user);
-        User GetById(Guid userId);
+        User GetById(long userId);
         User GetByUsername(string username);
         //ICollection<User> GetByCategory(string category);
     }

@@ -11,8 +11,8 @@ namespace RecipeApp.Domain
         Task<Recipe> Add(Recipe recipe);
         Task Update(Recipe recipe);
         //void Remove(Recipe recipe);
-        Task Remove(Guid id);
-        Task<Recipe> GetById(Guid recipeId);
+        Task Remove(long id);
+        Task<Recipe> GetById(long recipeId);
         Task<List<Recipe>> GetRecipes(Dictionary<string, string> filters);
     }
 }

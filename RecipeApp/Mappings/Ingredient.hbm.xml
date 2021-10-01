@@ -4,10 +4,15 @@
                    namespace="RecipeApp.Domain">
 
 	<class name="Ingredient" table="Ingredients">
+		<!--
 		<id name="IngredientID">
 			<generator class="guid" />
 		</id>
-		<many-to-one name="RecipeID" column="RecipeID" cascade="all" class="Recipe" not-null="true"/>
+		-->
+		<id name="IngredientID" column="IngredientID" type="long">
+			<generator class="native" />
+		</id>
+		<many-to-one name="RecipeID" column="RecipeID" cascade="all" class="Recipe" not-null="true" lazy="false"/>
 		<property name="Name">
 			<column name="Name" length="50" not-null="true" />
 		</property>

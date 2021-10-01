@@ -20,11 +20,11 @@ namespace RecipeApp.Repositories
             }
         }
 
-        public async Task<List<Ingredient>> GetAllIngredientsByRecipeId(int id)
+        public async Task<List<Ingredient>> GetAllIngredientsByRecipeId(long id)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var a = await session.Query<Ingredient>().Where(b => b.RecipeID.Equals(id)).ToListAsync();
+                var a = await session.Query<Ingredient>().Where(b => b.RecipeID.RecipeID == id).ToListAsync();
                 return a;
             }
         }
@@ -51,7 +51,7 @@ namespace RecipeApp.Repositories
             }
         }
 
-        public async Task Remove(Guid id)
+        public async Task Remove(long id)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())

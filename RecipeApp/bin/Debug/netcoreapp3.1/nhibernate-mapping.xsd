@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:element name="hibernate-mapping">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="class" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="generator">
+											<xs:complexType>
+												<xs:attribute name="class" type="xs:string"></xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="name" type="xs:string"></xs:attribute>
+									<xs:attribute name="column" type="xs:string"></xs:attribute>
+									<xs:attribute name="type" type="xs:string"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="property" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="column">
+											<xs:complexType>
+												<xs:attribute name="name" type="xs:string"></xs:attribute>
+												<xs:attribute name="length" type="xs:int"></xs:attribute>
+												<xs:attribute name="not-null" type="xs:string"></xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="name" type="xs:string"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string"></xs:attribute>
+						<xs:attribute name="table" type="xs:string"></xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="xmlns" type="xs:string"></xs:attribute>
+			<xs:attribute name="assembly" type="xs:string"></xs:attribute>
+			<xs:attribute name="namespace" type="xs:string"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

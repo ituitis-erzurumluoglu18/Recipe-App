@@ -31,7 +31,7 @@ namespace RecipeApp.Repositories
             }
         }
 
-        public async Task<Recipe> GetById(Guid recipeId)
+        public async Task<Recipe> GetById(long recipeId)
         {
             using (ISession session = NHibernateHelper.OpenSession())
                 return await session.GetAsync<Recipe>(recipeId);
@@ -50,7 +50,7 @@ namespace RecipeApp.Repositories
             }
         }
 
-        public async Task Remove(Guid id)
+        public async Task Remove(long id)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())

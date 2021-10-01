@@ -9,12 +9,12 @@ namespace RecipeApp.Domain
     {
         Task<List<Ingredient>> GetAllIngredientsByName(string name);
 
-        Task<List<Ingredient>> GetAllIngredientsByRecipeId(int id);
+        Task<List<Ingredient>> GetAllIngredientsByRecipeId(long id);
 
         Task<Ingredient> Add(Ingredient ingredient);
 
         Task Update(Ingredient ingredient);
 
-        Task Remove(Guid id);
+        Task Remove(long id);
     }
 }

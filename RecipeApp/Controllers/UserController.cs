@@ -45,7 +45,7 @@ namespace RecipeApp.Controllers
 
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(long id)
         {
             var user = _userService.GetById(id);
             if (user != null)

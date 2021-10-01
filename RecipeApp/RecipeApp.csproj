@@ -20,8 +20,10 @@
   <ItemGroup>
     <EmbeddedResource Include="hibernate.cfg.xml" />
     <EmbeddedResource Include="Mappings\User.hbm.xml" />
-	  <EmbeddedResource Include="Mappings\Recipe.hbm.xml" />
-	  <EmbeddedResource Include="Mappings\Ingredient.hbm.xml" />
+	<EmbeddedResource Include="Mappings\Recipe.hbm.xml" />
+	<EmbeddedResource Include="Mappings\Ingredient.hbm.xml" />
+	  <!--
+	-->
   </ItemGroup>
 
   <ItemGroup>

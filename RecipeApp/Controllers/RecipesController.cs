@@ -14,25 +14,29 @@ namespace RecipeApp.Controllers
     public class RecipesController : ControllerBase
     {
         private IRecipesRepository _recipesService;
+        private IIngredientsRepository _ingredientsService;
 
         public RecipesController()
         {
             _recipesService = new RecipesRepository();
+            _ingredientsService = new IngredientsRepository();
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var recipes = await _recipesService.GetAllRecipes();
+            //var ingredients = await _ingredientsService.GetAllIngredientsByRecipeId(1);
             if (recipes != null)
             {
+                //return Ok(ingredients);
                 return Ok(recipes);
             }
             return NotFound();
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(long id)
         {
             var recipe = await _recipesService.GetById(id);
             if (recipe != null)
@@ -61,7 +65,7 @@ namespace RecipeApp.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(long id)
         {
             if (_recipesService.GetById(id) != null)
             {

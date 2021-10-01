@@ -4,10 +4,19 @@
                    namespace="RecipeApp.Domain">
 
 	<class name="Recipe" table="Recipes">
+		<!--
 		<id name="RecipeID">
 			<generator class="guid" />
 		</id>
-		<many-to-one name="OwnerID" column="OwnerID" cascade="all" class="User" not-null="true"/>
+		-->
+		<id name="RecipeID" column="RecipeID" type="long">
+			<generator class="native"/>
+			<!--
+				<param name="key">KeyNumber</param>
+			</generator>
+			-->
+		</id>
+		<many-to-one name="OwnerID" column="OwnerID" cascade="all" class="User" not-null="true" lazy="false"/> <!---->
 		<property name="Name">
 			<column name="Name" length="50" not-null="true" />
 		</property>
@@ -17,7 +26,7 @@
 		<property name="PhotoUrl">
 			<column name="PhotoUrl" length="256" />
 		</property>
-		<property name="Duration" type="Int16">
+		<property name="Duration" type="Int32">
 			<column name="Duration" />
 		</property>
 		<property name="Process" type="StringClob">

@@ -25,6 +25,7 @@ namespace RecipeApp.Repositories
                     //configuration.AddXmlFile(@"Mappings\User.hbm.xml");
                     //configuration.AddXmlFile("hibernate.cfg.xml");
                     configuration.Configure("hibernate.cfg.xml");
+                    //configuration.AddFile(@"Mappings\Recipe.hbm.xml");
                     //var configurationPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~\Models\hibernate.cfg.xml");
                     //var bookConfigurationFile = (@"~\Mappings\Book.hbm.xml");
                     //var configurationPath = Path.Combine((string)AppDomain.CurrentDomain.GetData("ContentRootPath"), "hibernate.cfg.xml");

@@ -1,35 +1,50 @@
 import React, { Component } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  //Link
+} from "react-router-dom";
+//import AddUser from './AddUser';
+//import Button from '@material-ui/core/Button';
 
-export default class Recipe extends Component {
+class Recipe extends Component {
     render() {
+        console.log(this.props);
+        const {ownerId, name, type, photoUrl, duration, process, id} = this.props;
         return (
-            <div>
-                <div class="card">
-  <header class="card-header">
-    <p class="card-header-title">
-      Component
-    </p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-      <a href="/#">@bulmaio</a>. <a href="/#">#css</a> <a href="/#">#responsive</a>
-      <br/>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-  <footer class="card-footer">
-    <a href="/#" class="card-footer-item">Save</a>
-    <a href="/#" class="card-footer-item">Edit</a>
-    <a href="/#" class="card-footer-item">Delete</a>
-  </footer>
-</div>
+          <Router>
+            <div className="container">
+              <br/>
+              <div className="card">
+                <h5 className="card-header"><strong>{name}</strong></h5>
+                <div className="card-body">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td style={{paddingRight : "50px"}}>
+                          {photoUrl} Resim gelcek
+                        </td>
+                        <td>
+                          <h5 className="card-title">{type + " - " + duration + " min"}</h5>
+                          <p className="card-text">{process}</p>
+                          {/* <Button component={AddUser} to={"/recipes/" + id}>Click Me</Button>
+                          <Link className="button is-warning" to={"/recipes/" + id}>For More Detail</Link> */}
+                          <a className="button is-warning" href={"/recipes/" + id}>For More Detail</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <Switch>
+                {/*  component={AddUser} */}
+                <Route path={"/recipes/" + id}/>
+              </Switch>
             </div>
+          </Router>
         )
     }
 }
+
+export default Recipe;
