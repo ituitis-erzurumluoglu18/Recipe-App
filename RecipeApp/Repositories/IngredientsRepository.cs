@@ -20,14 +20,14 @@ namespace RecipeApp.Repositories
             }
         }
 
-        public async Task<List<Ingredient>> GetAllIngredientsByRecipeId(long id)
-        {
-            using (ISession session = NHibernateHelper.OpenSession())
-            {
-                var a = await session.Query<Ingredient>().Where(b => b.RecipeID.RecipeID == id).ToListAsync();
-                return a;
-            }
-        }
+        //public async Task<List<Ingredient>> GetAllIngredientsByRecipeId(long id)
+        //{
+        //    using (ISession session = NHibernateHelper.OpenSession())
+        //    {
+        //        var a = await session.Query<Ingredient>().Where(b => b.RecipeID.RecipeID == id).ToListAsync();
+        //        return a;
+        //    }
+        //}
 
         public async Task<Ingredient> Add(Ingredient ingredient)
         {

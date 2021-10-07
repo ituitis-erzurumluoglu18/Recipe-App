@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using RecipeApp.Domain;
 using RecipeApp.Repositories;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace RecipeApp.Controllers
 {
@@ -15,11 +17,13 @@ namespace RecipeApp.Controllers
     {
         private IRecipesRepository _recipesService;
         private IIngredientsRepository _ingredientsService;
+        private readonly IWebHostEnvironment _env;
 
-        public RecipesController()
+        public RecipesController(IWebHostEnvironment env)
         {
             _recipesService = new RecipesRepository();
             _ingredientsService = new IngredientsRepository();
+            _env = env;
         }
 
         [HttpGet]
@@ -46,11 +50,43 @@ namespace RecipeApp.Controllers
             return NotFound();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody] Recipe recipe)
+        //{
+        //    var createdRecipe = await _recipesService.Add(recipe);
+        //    return CreatedAtAction("Get", new { id = createdRecipe.RecipeID }, createdRecipe);
+        //}
+
+        [Route("Add")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Recipe recipe)
         {
+
             var createdRecipe = await _recipesService.Add(recipe);
             return CreatedAtAction("Get", new { id = createdRecipe.RecipeID }, createdRecipe);
+        }
+
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+
+                }
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+                return new JsonResult("recipe.jpg");
+            }
         }
 
         [HttpPut]

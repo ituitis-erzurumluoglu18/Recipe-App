@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace RecipeApp.Domain
 {
-    public class Ingredient
+    public class IngredientWithRecipeId
     {
         public virtual long IngredientID { get; set; }
 
-        //public virtual Recipe RecipeID { get; set; }
+        public virtual Recipe RecipeID { get; set; }
 
         public virtual string Name { get; set; }
 

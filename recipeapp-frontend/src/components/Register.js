@@ -172,7 +172,7 @@ export default class Register extends Component {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <form action="/login" method="post" onSubmit={()=>this.createUser()} name="register">
+                                <form action="/login" method="get" onSubmit={()=>this.createUser()} name="register">
                                     <button className="btn btn-danger btn-block" type="submit">Register</button>
                                 </form>
                             

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RecipeApp"
+                   namespace="RecipeApp.Domain">
+	
+	<class name="Mapping" table="Mappings">
+		<id name="MappingID" column="MappingID" type="long">
+			<generator class="native" />
+		</id>
+		<many-to-one name="RecipeID" column="RecipeID" cascade="all" class="Recipe" not-null="true" lazy="false"/>
+		<many-to-one name="IngredientID" column="IngredientID" cascade="all" class="Ingredient" not-null="true" lazy="false"/>
+	</class>
+
+</hibernate-mapping>

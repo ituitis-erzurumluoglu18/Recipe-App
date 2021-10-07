@@ -33,7 +33,7 @@ export default class Recipes extends Component {
                         return(
                             <Recipe
                                 key = {recipe.RecipeID}
-                                ownerId = {recipe.OwnerID}
+                                owner = {recipe.OwnerID}
                                 name = {recipe.Name}
                                 type = {recipe.Type}
                                 photoUrl = {recipe.PhotoUrl}

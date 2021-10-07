@@ -22,12 +22,10 @@
     <EmbeddedResource Include="Mappings\User.hbm.xml" />
 	<EmbeddedResource Include="Mappings\Recipe.hbm.xml" />
 	<EmbeddedResource Include="Mappings\Ingredient.hbm.xml" />
+	<EmbeddedResource Include="Mappings\Mapping.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MadeDish.hbm.xml" />
 	  <!--
 	-->
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Design\" />
   </ItemGroup>
 
   <ItemGroup>

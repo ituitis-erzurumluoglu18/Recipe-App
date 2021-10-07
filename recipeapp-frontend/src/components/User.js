@@ -1,72 +1,61 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import UserConsumer from "../context";
+import {variables} from "../Variables";
 
 class User extends Component {
-    state = {
-        isVisible : false
-    }
     constructor(props){
         super(props);
-        // this.state = {
-        //     isVisible : false
-        // }
-        this.onClickEvent = this.onClickEvent.bind(this)
-    }
-    onClickEvent = (number, e) => {
-        // console.log(number);
-        this.setState({
-            isVisible : !this.state.isVisible
-        })
+        this.state = {
+            user : {}
+        }
     }
 
-    onDeleteUser = (dispatch, e) => {
-        const {id} = this.props;
-        dispatch({type : "DELETE_USER", payload : id});
-        console.log("geldi")
+    reFreshList(url){
+        fetch(variables.API_URL+url)
+        .then(response => response.json())
+        .then(data => {
+                this.setState({user : data});
+            });
+    }
+
+    componentDidMount() {
+        const userId = this.props.match.params.id;
+        const url = `user/${userId}`;
+        this.reFreshList(url);
     }
 
     render() {
-        const {name, department} = this.props;
-        const {isVisible} = this.state;
-        return(
-            <UserConsumer>
-                {
-                    value => {
-                        const {dispatch} = value;
-                        return (
-                            <div className="col-md-8 mb-4">
-                                <div className="card" style={isVisible ? {backgroundColor : "#62848d", color : "white"} : null}>
-                                    <div className="card-header d-flex justify-content-between">
-                                        <h4 className="d-inline" onClick={this.onClickEvent.bind(this)}>{name}</h4>
-                                        <i className="fas fa-trash-alt" style={{cursor : "pointer"}} onClick={this.onDeleteUser.bind(this, dispatch)}></i>
-                                    </div>
-                                    { isVisible ? 
-                                    <div className="card-body">
-                                        <p className="card-text">Department : {department}</p>
-                                    </div> : null
-                                    }
-                                </div>
-                            </div>
-                        )
-                    }
-                }
-            </UserConsumer>
+        const photoPath = variables.PHOTO_URL;
+        const {user} = this.state;
+        return (
+            <div className="container">
+              <br/>
+              <div className="card">
+                <h5 className="card-header"><strong>{user.Username}</strong></h5>
+                <div className="card-body">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td style={{paddingRight : "50px"}}>
+                          <img width="260px" height="250px" 
+                                                src={photoPath+user.PhotoUrl}
+                                                alt="pic"/>
+                        </td>
+                        <td>
+                          <h5 className="card-title">{"Name : " + user.Name}</h5>
+                          <p className="card-text">{"Email : " + user.Email}</p> 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer text-muted">
+                  
+                </div>
+              </div>
+            </div>
         )
         
     }
-}
-
-User.defaultProps = {
-    name : "Bilgi yok",
-    department : "Bilgi yok",
-    id : 0
-}
-
-User.propTypes = {
-    name : PropTypes.string.isRequired,
-    department : PropTypes.string.isRequired,
-    id : PropTypes.string.isRequired
 }
 
 export default User;

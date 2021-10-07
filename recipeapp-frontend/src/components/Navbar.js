@@ -1,15 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Route, Switch, NavLink} from 'react-router-dom';
-import App from "../App";
+import {NavLink} from 'react-router-dom';
 //import AddUser from "./AddUser";
-import Recipes from "./Recipes";
-import Register from "./Register";
-import Login from "./Login";
+
 
 function Navbar(props){
     return(
-      <BrowserRouter>
         <div>
           <header>
             <nav className="navbar is-danger" role="navigation" aria-label="main navigation">
@@ -34,9 +30,13 @@ function Navbar(props){
 				        	<NavLink className="navbar-item" to="/recipes">
                     <strong>Recipes</strong>
                   </NavLink>
+
+                  <NavLink className="navbar-item" to="/recipes/add">
+                    <strong>Add Recipe</strong>
+                  </NavLink>
 				        </div>
 				  
-				        <div className="navbar-end">
+				        {/* <div className="navbar-end">
 					        <div className="navbar-item">
 					          <div className="buttons">
                       <NavLink className="button is-danger" to="/register">
@@ -47,18 +47,11 @@ function Navbar(props){
                       </NavLink>
 					          </div>
 					        </div>
-				        </div>
+				        </div> */}
 				      </div>
 			      </nav>
-            <Switch>
-                <Route path='../home' component={App}/>
-                <Route path='/recipes' component={Recipes}/>
-                <Route path='/register' component={Register}/>
-                <Route path='/login' component={Login}/>
-            </Switch>
 		      </header>
         </div>
-      </BrowserRouter>
     )
 }
 
