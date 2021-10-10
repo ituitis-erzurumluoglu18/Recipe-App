@@ -9,7 +9,7 @@ namespace RecipeApp.Domain
     {
         public virtual long IngredientID { get; set; }
 
-        public virtual Recipe RecipeID { get; set; }
+        public virtual long RecipeID { get; set; }
 
         public virtual string Name { get; set; }
 

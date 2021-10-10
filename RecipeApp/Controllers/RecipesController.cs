@@ -58,13 +58,32 @@ namespace RecipeApp.Controllers
         //}
 
         [Route("Add")]
+        [HttpGet]
+        public IActionResult GetAdd()
+        {
+
+            return Ok();
+        }
+
+        [Route("Add")]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Recipe recipe)
+        public async Task<IActionResult> Post([FromBody] Recipe recipe) //JsonResult
         {
 
             var createdRecipe = await _recipesService.Add(recipe);
+            //return new JsonResult(createdRecipe);
+            //return Ok(createdRecipe);
             return CreatedAtAction("Get", new { id = createdRecipe.RecipeID }, createdRecipe);
         }
+
+        //[Route("Add")]
+        //[HttpPost]
+        //public async Task<IActionResult> PostIngredient([FromBody] Ingredient ingredient)
+        //{
+
+        //    var createdIngredient = await _ingredientsService.Add(ingredient);
+        //    return CreatedAtAction("Get", new { id = createdIngredient.IngredientID }, createdIngredient);
+        //}
 
         [Route("SaveFile")]
         [HttpPost]

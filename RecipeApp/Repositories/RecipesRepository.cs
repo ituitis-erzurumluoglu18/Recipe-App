@@ -16,8 +16,15 @@ namespace RecipeApp.Repositories
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
-                await session.SaveAsync(recipe);
-                await transaction.CommitAsync();
+                try
+                {
+                    await session.SaveAsync(recipe);
+                    await transaction.CommitAsync();
+                }
+                finally
+                {
+                    transaction.Dispose();
+                }
                 return recipe;
             }
         }
@@ -55,9 +62,16 @@ namespace RecipeApp.Repositories
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
-                var recipe = session.Load<Recipe>(id);
-                await session.DeleteAsync(recipe);
-                await transaction.CommitAsync();
+                try
+                {
+                    var recipe = session.Load<Recipe>(id);
+                    await session.DeleteAsync(recipe);
+                    await transaction.CommitAsync();
+                }
+                finally
+                {
+                    transaction.Dispose();
+                }
             }
         }
 
@@ -66,8 +80,15 @@ namespace RecipeApp.Repositories
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
-                await session.UpdateAsync(recipe);
-                await transaction.CommitAsync();
+                try
+                {
+                    await session.UpdateAsync(recipe);
+                    await transaction.CommitAsync();
+                }
+                finally
+                {
+                    transaction.Dispose();
+                }
                 //var recipe = await session.GetAsync<Recipe>(recipe.RecipeId)
             }
         }

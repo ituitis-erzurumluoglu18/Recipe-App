@@ -21,5 +21,9 @@
 		<property name="Portion">
 			<column name="Portion" length="100" not-null="true" />
 		</property>
+		<!--<set name="Mapping" inverse="true">
+			<key column="IngredientID" />
+			<one-to-many class="Mapping" />
+		</set>-->
 	</class>
 </hibernate-mapping>

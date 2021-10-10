@@ -3,12 +3,12 @@
                    assembly="RecipeApp"
                    namespace="RecipeApp.Domain">
 	
-	<class name="Mapping" table="Mappings">
+	<class name="Mapping" table="Mapping">
 		<id name="MappingID" column="MappingID" type="long">
 			<generator class="native" />
 		</id>
-		<many-to-one name="RecipeID" column="RecipeID" cascade="all" class="Recipe" not-null="true" lazy="false"/>
-		<many-to-one name="IngredientID" column="IngredientID" cascade="all" class="Ingredient" not-null="true" lazy="false"/>
+		<many-to-one name="RecipeID" column="RecipeID" class="Recipe" not-null="false" cascade="save-update" lazy="false"/> <!-- not-null="true" lazy="false"  cascade="all" -->
+		<many-to-one name="IngredientID" column="IngredientID" class="Ingredient" not-null="false" cascade="save-update" lazy="false"/>
 	</class>
 
 </hibernate-mapping>

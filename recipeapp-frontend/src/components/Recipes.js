@@ -44,6 +44,7 @@ export default class Recipes extends Component {
                         )
                     })
                 }
+                <br/>
             </div>
         )
     }

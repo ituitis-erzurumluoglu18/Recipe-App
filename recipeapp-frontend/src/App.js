@@ -9,6 +9,7 @@ import DCandidates from './components/DCandidates';
 */
 import Navbar from "./components/Navbar";
 import User from './components/User';
+import UpdateRecipe from './components/UpdateRecipe';
 //import Users from './components/Users';
 //import Test from './components/Test';
 
@@ -25,14 +26,15 @@ function App() {
       <div className="App">
         <Navbar title = "Recipe App"/>
         <Switch>
-                <Route path='../home' component={App}/>
-                <Route path="/recipes/add" component={AddRecipe}/>
-                <Route path='/recipes' component={Recipes}/>
-                <Route path='/register' component={Register}/>
-                <Route path='/login' component={Login}/>
-                <Route path='/recipe/:id' component={RecipeDetail}/>
-                <Route path='/user/:id' component={User}/>
-            </Switch>
+          <Route path='../home' component={App}/>
+          <Route path="/recipes/add" component={AddRecipe}/>
+          <Route path='/recipes' component={Recipes}/>
+          <Route path='/register' component={Register}/>
+          <Route path='/login' component={Login}/>
+          <Route path='/recipe/:id/update' component={UpdateRecipe}/>
+          <Route path='/recipe/:id' component={RecipeDetail}/>
+          <Route path='/user/:id' component={User}/>
+        </Switch>
       </div>
       </BrowserRouter>
     )

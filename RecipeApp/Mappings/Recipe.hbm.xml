@@ -32,5 +32,9 @@
 		<property name="Process" type="StringClob">
 			<column name="Process" not-null="true" />
 		</property>
+		<!--<set name="Mapping" inverse="true">
+			<key column="RecipeID" />
+			<one-to-many class="Mapping" />
+		</set>-->
 	</class>
 </hibernate-mapping>
