@@ -18,10 +18,11 @@
 		<property name="Name">
 			<column name="Name" length="50" not-null="true" />
 		</property>
+		<!--
 		<property name="Portion">
 			<column name="Portion" length="100" not-null="true" />
 		</property>
-		<!--<set name="Mapping" inverse="true">
+		<set name="Mapping" inverse="true">
 			<key column="IngredientID" />
 			<one-to-many class="Mapping" />
 		</set>-->

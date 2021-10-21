@@ -11,6 +11,15 @@ namespace RecipeApp.Repositories
 {
     public class IngredientsRepository : IIngredientsRepository
     {
+        public async Task<List<Ingredient>> GetAllIngredients()
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var a = await session.Query<Ingredient>().ToListAsync();
+                return a;
+            }
+        }
+
         public async Task<List<Ingredient>> GetAllIngredientsByName(string name)
         {
             using (ISession session = NHibernateHelper.OpenSession())
@@ -43,7 +52,7 @@ namespace RecipeApp.Repositories
                 var return_val = ingredient;
                 try
                 {
-                    var is_exist = await session.Query<Ingredient>().Where(b => b.Name.Equals(ingredient.Name) && b.Portion.Equals(ingredient.Portion)).ToListAsync();
+                    var is_exist = await session.Query<Ingredient>().Where(b => b.Name.Equals(ingredient.Name)).ToListAsync(); // && b.Portion.Equals(ingredient.Portion)
                     if (!is_exist.Any())
                     {
                         await session.SaveAsync(ingredient);

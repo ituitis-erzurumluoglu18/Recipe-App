@@ -24,6 +24,19 @@ namespace RecipeApp.Controllers
             _mappingsService = new MappingRepository();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var ingredients = await _ingredientsService.GetAllIngredients();
+            //var ingredients = await _ingredientsService.GetAllIngredientsByRecipeId(1);
+            if (ingredients != null)
+            {
+                //return Ok(ingredients);
+                return Ok(ingredients);
+            }
+            return NotFound();
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
@@ -89,7 +102,7 @@ namespace RecipeApp.Controllers
                 var mapping = await _mappingsService.GetAllMappingsByIngredientId(ingredient.IngredientID);
                 if(mapping.Count > 1)
                 {
-                    Ingredient newIngredient = new Ingredient { Name = ingredient.Name, Portion = ingredient.Portion };
+                    Ingredient newIngredient = new Ingredient { Name = ingredient.Name }; //, Portion = ingredient.Portion 
                     var createdIngredient = await _ingredientsService.Add(newIngredient);
                     return CreatedAtAction("Get", new { id = createdIngredient.IngredientID }, createdIngredient);
                 }

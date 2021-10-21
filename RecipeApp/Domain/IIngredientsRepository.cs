@@ -7,6 +7,8 @@ namespace RecipeApp.Domain
 {
     interface IIngredientsRepository
     {
+        Task<List<Ingredient>> GetAllIngredients();
+
         Task<List<Ingredient>> GetAllIngredientsByName(string name);
 
         Task<Ingredient> GetById(long ingredientId);

@@ -34,6 +34,10 @@ function Navbar(props){
                   <NavLink className="navbar-item" to="/recipes/add">
                     <strong>Add Recipe</strong>
                   </NavLink>
+
+                  <NavLink className="navbar-item" to="/recipes/search">
+                    <strong>Search</strong>
+                  </NavLink>
 				        </div>
 				  
 				        {/* <div className="navbar-end">

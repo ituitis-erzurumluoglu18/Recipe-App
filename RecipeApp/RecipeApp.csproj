@@ -31,7 +31,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.16" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+	  <!--"3.1.5"-->
     <PackageReference Include="MilestoneTG.NHibernate.Extensions.AspNetCore" Version="1.0.13" />
     <PackageReference Include="NHibernate" Version="5.3.9" />
     <PackageReference Include="NHibernate.Caches.CoreDistributedCache.SqlServer" Version="5.7.0" />

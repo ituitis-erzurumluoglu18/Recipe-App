@@ -16,7 +16,7 @@
 			</generator>
 			-->
 		</id>
-		<many-to-one name="OwnerID" column="OwnerID" cascade="all" class="User" not-null="true" lazy="false"/> <!---->
+		<many-to-one name="OwnerID" column="OwnerID" cascade="save-update" class="User" not-null="false" lazy="false"/> <!---->
 		<property name="Name">
 			<column name="Name" length="50" not-null="true" />
 		</property>

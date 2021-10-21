@@ -44,16 +44,17 @@ namespace RecipeApp.Repositories
                 return await session.GetAsync<Recipe>(recipeId);
         }
 
-        public async Task<List<Recipe>> GetRecipes(Dictionary<string, string> filters)
+        public async Task<List<Recipe>> GetFilteredRecipes(List<string> filter, List<Recipe> recipes)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var query = session.Query<Recipe>().Where(b => b.Name.Contains(filters["name"])); 
-                if(filters["type"] != "")
-                    query = query.Where(b => b.Type.Equals(filters["type"]));
-                if(filters["duration"] != "")
-                    query = query.Where(b => b.Duration.Equals(Int16.Parse(filters["duration"])));
-                return await query.ToListAsync();
+                return await session.Query<Recipe>().ToListAsync();
+                //var query = session.Query<Recipe>().Where(b => b.Name.Contains(filters["name"])); 
+                //if(filters["type"] != "")
+                //    query = query.Where(b => b.Type.Equals(filters["type"]));
+                //if(filters["duration"] != "")
+                //    query = query.Where(b => b.Duration.Equals(Int16.Parse(filters["duration"])));
+                //return await query.ToListAsync();
             }
         }
 
@@ -90,6 +91,42 @@ namespace RecipeApp.Repositories
                     transaction.Dispose();
                 }
                 //var recipe = await session.GetAsync<Recipe>(recipe.RecipeId)
+            }
+        }
+
+        public async Task<List<string>> GetTypes()
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                IList<string> ages = session.QueryOver<Recipe>().Select(c => c.Type).List<string>();
+
+                /*
+                var a = await session.QueryOver<Recipe>().SelectList(list =>
+                list.SelectGroup(a => a.Type)).ListAsync();
+
+                var kittens = session.CreateCriteria<Recipe>()
+                                .SetProjection(Projections.Entity(typeof(Recipe), "Type")).List();
+
+                var results = session.CreateCriteria<Recipe>()
+                                        .SetProjection(Projections.GroupProperty("Types").As("types"))
+                                        .AddOrder(Order.Asc("types"))
+                                        .List<string>();
+
+
+                                   
+                List<string> myList = new List<string>(results);
+                */
+                List<string> myListages = new List<string>(ages);
+                return myListages;
+            }
+        }
+
+        public async Task<List<Recipe>> GetRecipesByType(string type)
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var a = await session.Query<Recipe>().Where(b => b.Type.Equals(type)).ToListAsync();
+                return a;
             }
         }
     }

@@ -61,7 +61,6 @@ namespace RecipeApp.Controllers
         [HttpGet]
         public IActionResult GetAdd()
         {
-
             return Ok();
         }
 
@@ -76,6 +75,39 @@ namespace RecipeApp.Controllers
             return CreatedAtAction("Get", new { id = createdRecipe.RecipeID }, createdRecipe);
         }
 
+        [Route("Search")]
+        [HttpPost]
+        public async Task<IActionResult> PostSearch([FromBody] List<string> filter) //JsonResult
+        {
+            List<Recipe> recipes;
+            if (filter[0] != "All")
+            {
+                recipes = await _recipesService.GetRecipesByType(filter[0]);
+            }
+            else
+            {
+                recipes = await _recipesService.GetAllRecipes();
+            }
+            List<Recipe> filteredRecipes = await _recipesService.GetFilteredRecipes(filter,recipes);
+            return Ok(recipes);
+        }
+        
+        //[Route("Search")]
+        //[HttpPost]
+        //public async Task<IActionResult> PostSearch([FromBody] Filter filter) //JsonResult
+        //{
+        //    List<Recipe> recipes;
+        //    if (filter.Type != "All")
+        //    {
+        //        recipes = await _recipesService.GetRecipesByType(filter.Type);
+        //    }
+        //    else
+        //    {
+        //        recipes = await _recipesService.GetAllRecipes();
+        //    }
+        //    Ok(recipes);
+        //}
+
         //[Route("Add")]
         //[HttpPost]
         //public async Task<IActionResult> PostIngredient([FromBody] Ingredient ingredient)
@@ -84,6 +116,18 @@ namespace RecipeApp.Controllers
         //    var createdIngredient = await _ingredientsService.Add(ingredient);
         //    return CreatedAtAction("Get", new { id = createdIngredient.IngredientID }, createdIngredient);
         //}
+
+        [Route("Types")]
+        [HttpGet]
+        public IActionResult GetTypes()
+        {
+            var types = _recipesService.GetTypes();
+            if (types != null)
+            {
+                return Ok(types);
+            }
+            return NotFound();
+        }
 
         [Route("SaveFile")]
         [HttpPost]

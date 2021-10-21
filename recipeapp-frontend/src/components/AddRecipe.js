@@ -10,7 +10,7 @@ class AddRecipe extends Component {
             getRecipe : {},
             getIngredients : [],
             name : "",
-            type : "Lunch",
+            type : "Zeytinyağlı",
             duration : 0,
             process : "",
             photoUrl : "recipe.jpg",
@@ -31,7 +31,7 @@ class AddRecipe extends Component {
     }
 
     componentDidMount() {
-        // this.reFreshList();
+        this.reFreshList();
         // console.log("geldi")
     }
     componentWillUnmount() {
@@ -146,7 +146,7 @@ class AddRecipe extends Component {
             //return result;
             //this.reFreshList();
         },(error) => {
-            alert("Failed");
+            alert("Failedr");
         });
     }
 
@@ -170,7 +170,8 @@ class AddRecipe extends Component {
             //alert(result);
             this.props.history.push('/recipes');
         },(error) => {
-            alert("Failed");
+            alert("Failedm");
+            this.props.history.push('/recipes');
         })
     }
 
@@ -201,7 +202,7 @@ class AddRecipe extends Component {
             //console.log(result);
             //alert(result);
         },(error) => {
-            alert("Failed");
+            alert("Failedi");
         })
     }
 
@@ -281,8 +282,12 @@ class AddRecipe extends Component {
                                                   placeholder="Enter Email" 
                                                   required="required"
                                                   onChange={this.changeInput}>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Dinner">Dinner</option>
+                                                    <option value="Zeytinyağlı">Zeytinyağlı</option>
+                                                    <option value="Çorba">Çorba</option>
+                                                    <option value="Tatlı">Tatlı</option>
+                                                    <option value="Et yemeği">Et yemeği</option>
+                                                    <option value="Sulu yemek">Sulu yemek</option>
+                                                    <option value="Sebze yemeği">Sebze yemeği</option>
                                                   </select>
                                                 </div>
                                             </div>
@@ -344,7 +349,7 @@ class AddRecipe extends Component {
                                                     value={item.name}
                                                     onChange={this.changeIngredientsInputName.bind(this, item.key)}/>
                                                     {/* `ingredients[${item.index}].portion` */}
-                                                    <input type="text" 
+                                                    {/* <input type="text" 
                                                     name={`portion${item.key}`}  
                                                     id={`portion${item.key}`} 
                                                     placeholder="Enter Portion" 
@@ -352,7 +357,7 @@ class AddRecipe extends Component {
                                                     className="input" 
                                                     style={{width:"250px",marginLeft:"20px"}} 
                                                     value={item.portion}
-                                                    onChange={this.changeIngredientsInputPortion.bind(this, item.key)}/>
+                                                    onChange={this.changeIngredientsInputPortion.bind(this, item.key)}/> */}
                                                 </p>
                                             </div>
                                         )

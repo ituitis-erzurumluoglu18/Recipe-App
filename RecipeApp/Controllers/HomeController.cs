@@ -14,16 +14,25 @@ namespace RecipeApp.Controllers
     public class HomeController : ControllerBase
     {
         private IUserRepository _userService;
+        private IRecipesRepository _recipesService;
 
         public HomeController()
         {
             _userService = new UserRepository();
+            _recipesService = new RecipesRepository();
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok();
+            var recipes = await _recipesService.GetAllRecipes();
+            Random r = new Random();
+            int rInt = r.Next(0, recipes.Count);
+            if (recipes != null)
+            {
+                return Ok(recipes[rInt]);
+            }
+            return NotFound();
         }
 
         [HttpPost]

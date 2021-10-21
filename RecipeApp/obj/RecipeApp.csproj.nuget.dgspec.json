@@ -54,7 +54,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.5, )"
+              "version": "[2.2.4, )"
             },
             "MilestoneTG.NHibernate.Extensions.AspNetCore": {
               "target": "Package",

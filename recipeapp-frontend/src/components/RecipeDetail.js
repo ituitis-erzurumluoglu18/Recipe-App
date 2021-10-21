@@ -124,6 +124,7 @@ class RecipeDetail extends Component {
             this.props.history.push('/recipes');
         },(error) =>{
             alert("Failed");
+            this.props.history.push('/recipes');
         });
     }
 
@@ -195,7 +196,7 @@ class RecipeDetail extends Component {
                       </tr>
                       <tr>
                         <th>Name</th>
-                        <th style={{paddingLeft:"30px"}}>Portion</th>
+                        {/* <th style={{paddingLeft:"30px"}}>Portion</th> */}
                       </tr>
                       {
                         ingredients.map(ingredient => {
@@ -203,8 +204,8 @@ class RecipeDetail extends Component {
                             <Ingredient
                               key={ingredient.IngredientID}
                               name={ingredient.Name}
-                              portion={ingredient.Portion}
-                            />
+                              
+                            />/* portion={ingredient.Portion} */
                           );
                         })
                       }

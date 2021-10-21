@@ -13,6 +13,6 @@ namespace RecipeApp.Domain
 
         public virtual string Name { get; set; }
 
-        public virtual string Portion { get; set; }
+        //public virtual string Portion { get; set; }
     }
 }
