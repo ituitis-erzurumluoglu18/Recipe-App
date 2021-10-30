@@ -88,8 +88,19 @@ namespace RecipeApp.Controllers
             {
                 recipes = await _recipesService.GetAllRecipes();
             }
-            List<Recipe> filteredRecipes = await _recipesService.GetFilteredRecipes(filter,recipes);
-            return Ok(recipes);
+
+            if (filter.Count == 1)
+            {
+                return Ok(recipes);
+            }
+            List<Filter> filters = await _recipesService.GetFilteredRecipes(filter,recipes);
+            return Ok(filters);
+            List<Recipe> filteredRecipes = new List<Recipe>();
+            foreach (Filter fil in filters)
+            {
+                filteredRecipes.Add(fil.Recipe);
+            }
+            return Ok(filteredRecipes);
         }
         
         //[Route("Search")]

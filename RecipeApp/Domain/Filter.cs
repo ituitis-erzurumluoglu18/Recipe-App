@@ -7,8 +7,10 @@ namespace RecipeApp.Domain
 {
     public class Filter
     {
-        public string Type { get; set; }    // virtual
+        public int Point { get; set; }    // virtual
 
-        public List<string> Ingredients { get; set; }
+        public Recipe Recipe { get; set; }
+
+        public float Repetition { get; set; }
     }
 }

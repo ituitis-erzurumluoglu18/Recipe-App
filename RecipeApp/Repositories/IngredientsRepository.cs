@@ -52,9 +52,10 @@ namespace RecipeApp.Repositories
                 var return_val = ingredient;
                 try
                 {
-                    var is_exist = await session.Query<Ingredient>().Where(b => b.Name.Equals(ingredient.Name)).ToListAsync(); // && b.Portion.Equals(ingredient.Portion)
+                    var is_exist = await session.Query<Ingredient>().Where(b => b.Name.ToLower().Equals(ingredient.Name.ToLower())).ToListAsync(); // && b.Portion.Equals(ingredient.Portion)
                     if (!is_exist.Any())
                     {
+                        ingredient.Repetition = 1;
                         await session.SaveAsync(ingredient);
                         await transaction.CommitAsync();
                         return_val = ingredient;
@@ -62,6 +63,8 @@ namespace RecipeApp.Repositories
                     else
                     {
                         return_val = is_exist[0];
+                        return_val.Repetition++;
+                        await Update(return_val);
                     }
                 }
                 finally

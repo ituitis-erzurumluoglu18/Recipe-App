@@ -287,6 +287,7 @@ class AddRecipe extends Component {
                                                     <option value="Tatlı">Tatlı</option>
                                                     <option value="Et yemeği">Et yemeği</option>
                                                     <option value="Sulu yemek">Sulu yemek</option>
+                                                    <option value="Salata">Salata</option>
                                                     <option value="Sebze yemeği">Sebze yemeği</option>
                                                   </select>
                                                 </div>

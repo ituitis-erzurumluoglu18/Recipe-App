@@ -115,11 +115,9 @@ class UpdateRecipe extends Component {
             this.setState({
                 ingredients : [...this.state.ingredients,
                     {Name: "",
-                    Portion : "",
                     key : length}],
                 old_ingredients : [...this.state.old_ingredients,
                     {Name: "",
-                    Portion : "",
                     key : length}]
             });
         }
@@ -235,10 +233,10 @@ class UpdateRecipe extends Component {
             if(this.state.ingredients.key === (this.state.ingredients.length - 1)){
                 this.getAllValues();
             }
-            //this.props.history.push(`/recipe/${this.state.recipe.RecipeID}`);
+            this.props.history.push(`/recipe/${this.state.recipe.RecipeID}`);
         },(error) => {
             //alert("Failed");
-            //this.props.history.push(`/recipe/${this.state.recipe.RecipeID}`);
+            this.props.history.push(`/recipe/${this.state.recipe.RecipeID}`);
         })
     }
 
@@ -407,8 +405,13 @@ class UpdateRecipe extends Component {
                                                   placeholder="Enter Email" 
                                                   required="required"
                                                   onChange={this.changeInput}>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Dinner">Dinner</option>
+                                                    <option value="Zeytinyağlı">Zeytinyağlı</option>
+                                                    <option value="Çorba">Çorba</option>
+                                                    <option value="Tatlı">Tatlı</option>
+                                                    <option value="Et yemeği">Et yemeği</option>
+                                                    <option value="Sulu yemek">Sulu yemek</option>
+                                                    <option value="Salata">Salata</option>
+                                                    <option value="Sebze yemeği">Sebze yemeği</option>
                                                   </select>
                                                 </div>
                                             </div>
@@ -465,7 +468,7 @@ class UpdateRecipe extends Component {
                                                     value={item.Name}
                                                     onChange={this.changeIngredientsInputName.bind(this, item.key)}/>
                                                     {/* `ingredients[${item.index}].portion` */}
-                                                    <input type="text" 
+                                                    {/* <input type="text" 
                                                     name={`portion${item.key}`}  
                                                     id={`portion${item.key}`} 
                                                     placeholder="Enter Portion" 
@@ -473,7 +476,7 @@ class UpdateRecipe extends Component {
                                                     className="input" 
                                                     style={{width:"250px",marginLeft:"20px"}} 
                                                     value={item.Portion}
-                                                    onChange={this.changeIngredientsInputPortion.bind(this, item.key)}/>
+                                                    onChange={this.changeIngredientsInputPortion.bind(this, item.key)}/> */}
                                                     <button className="button" type="button" onClick={this.deleteMapping.bind(this, item.IngredientID)}>
                                                       <span className="icon is-small">
                                                         <i className="fas fa-trash-alt"></i>

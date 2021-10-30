@@ -18,6 +18,9 @@
 		<property name="Name">
 			<column name="Name" length="50" not-null="true" />
 		</property>
+		<property name="Repetition" type="Int32">
+			<column name="Repetition" />
+		</property>
 		<!--
 		<property name="Portion">
 			<column name="Portion" length="100" not-null="true" />

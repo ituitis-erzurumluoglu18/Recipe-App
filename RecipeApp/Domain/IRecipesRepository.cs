@@ -13,7 +13,7 @@ namespace RecipeApp.Domain
         //void Remove(Recipe recipe);
         Task Remove(long id);
         Task<Recipe> GetById(long recipeId);
-        Task<List<Recipe>> GetFilteredRecipes(List<string> filter, List<Recipe> recipes);
+        Task<List<Filter>> GetFilteredRecipes(List<string> filter, List<Recipe> recipes);
 
         Task<List<string>> GetTypes();
 

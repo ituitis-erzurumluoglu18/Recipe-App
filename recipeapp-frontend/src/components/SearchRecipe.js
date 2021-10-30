@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {variables} from "../Variables";
 import Recipe from './Recipe';
+import RecipeWithPoint from './RecipeWithPoint';
 
 class SearchRecipe extends Component {
     constructor(props){
@@ -10,7 +11,9 @@ class SearchRecipe extends Component {
             ingredients : [],
             types : [],
             typeFilter : "All",
-            ingredientsFilter : {}
+            ingredientsFilter : {},
+            points : [],
+            isPointShown : false
         }
     }
 
@@ -96,8 +99,19 @@ class SearchRecipe extends Component {
         .then(response => response.json())
         .then(data => {
             console.log("data");
-            this.setState({recipes : data});
-            
+            //console.log(data);
+            if (a.length === 1){
+                this.setState({isPointShown : false, recipes : data});
+            }
+            else {
+                let a = [];
+                data.forEach(d => {
+                    let r = {...d.Recipe, Point : d.Point};
+                    a = [...a, r];
+                });
+                //console.log(a);
+                this.setState({recipes : a, isPointShown : true});
+            }
         })
         .then(result => {
             alert("Successed");
@@ -113,7 +127,7 @@ class SearchRecipe extends Component {
                 <div className="card">
                     <div className="card-body">
                         <h5 className="card-title">Filter</h5>
-                        <p className="card-text"> 
+                        <div className="card-text"> 
                         <div className="form-group">
                             <label htmlFor="type">Type</label>
                             <br/>
@@ -139,7 +153,7 @@ class SearchRecipe extends Component {
                             {
                                 ingredients.map(ingredient => {
                                     return(
-                                        <label class="checkbox">
+                                        <label className="checkbox">
                                           <input type="checkbox"
                                           name={ingredient.Name} 
                                           id={ingredient.Name} 
@@ -154,23 +168,40 @@ class SearchRecipe extends Component {
                             }
                         </div>
                         <button className="btn btn-danger" type="button" onClick={() => this.searchRecipe()}>Search</button>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <div>
                     {
                         recipes.map(recipe => {
                             return(
-                                <Recipe
-                                    key = {recipe.RecipeID}
-                                    owner = {recipe.OwnerID}
-                                    name = {recipe.Name}
-                                    type = {recipe.Type}
-                                    photoUrl = {recipe.PhotoUrl}
-                                    duration = {recipe.Duration}
-                                    process = {recipe.Process}
-                                    id = {recipe.RecipeID}
-                                />
+                                <div>
+                                    {this.state.isPointShown ? 
+                                        <RecipeWithPoint
+                                            key = {recipe.RecipeID}
+                                            owner = {recipe.OwnerID}
+                                            name = {recipe.Name}
+                                            type = {recipe.Type}
+                                            photoUrl = {recipe.PhotoUrl}
+                                            duration = {recipe.Duration}
+                                            process = {recipe.Process}
+                                            id = {recipe.RecipeID}
+                                            point = {recipe.Point}
+                                        />
+                                        :
+                                        <Recipe
+                                            key = {recipe.RecipeID}
+                                            owner = {recipe.OwnerID}
+                                            name = {recipe.Name}
+                                            type = {recipe.Type}
+                                            photoUrl = {recipe.PhotoUrl}
+                                            duration = {recipe.Duration}
+                                            process = {recipe.Process}
+                                            id = {recipe.RecipeID}
+                                        />
+                                    }
+                                                
+                                </div>
                             )
                         })
                     }

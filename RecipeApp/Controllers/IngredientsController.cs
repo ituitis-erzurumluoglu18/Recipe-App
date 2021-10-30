@@ -32,6 +32,7 @@ namespace RecipeApp.Controllers
             if (ingredients != null)
             {
                 //return Ok(ingredients);
+                ingredients = ingredients.OrderBy(i => i.Name).ToList();
                 return Ok(ingredients);
             }
             return NotFound();
@@ -89,6 +90,9 @@ namespace RecipeApp.Controllers
                     await _ingredientsService.Remove(id);
                     return Ok();
                 }
+                Ingredient ingredient = await _ingredientsService.GetById(id);
+                ingredient.Repetition = ingredient.Repetition - 1;
+                await _ingredientsService.Update(ingredient);
                 return Ok();
             }
             return NotFound();

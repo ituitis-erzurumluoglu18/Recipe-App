@@ -33,7 +33,7 @@ class Home extends Component {
                     type = {recipes.Type}
                     photoUrl = {recipes.PhotoUrl}
                     duration = {recipes.Duration}
-                    process = {recipes.Process}
+                    process = {String(recipes.Process)}
                     id = {recipes.RecipeID}
                 />
             </div>
