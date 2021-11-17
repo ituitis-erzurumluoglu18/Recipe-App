@@ -62,7 +62,6 @@ namespace RecipeApp
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=api/home}/{action=Get}/{id?}");
